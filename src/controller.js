@@ -1,5 +1,6 @@
 
 export default ['$scope', '$element', function ($scope, $element) {
+    
     // Function that waits for Listbox-containers - IE11 display bug
     function waitForElementToDisplay(selector, time, type) {
         if (document.querySelector(selector) != null) {
@@ -11,6 +12,7 @@ export default ['$scope', '$element', function ($scope, $element) {
                     li.innerHTML = '<li id="qwik-copy-li" class="lui-list__item lui-list__action" ng-class="{ "lui-disabled": item.disabled, "qv-contextmenu-has-submenu": item.hasSubmenu(), "has-icon": item.hasIcon() }" qva-focus="item.autoFocus" qva-activate="item.disabled || selectItem($event,item)" tcl="context-menu-item" tabindex="-1"> <i class="lui-list__aside  item-icon  lui-icon  lui-icon--copy" ></i> <span class="lui-list__text ng-binding" title="Copy">Copy Cell</span> <i></i> </li>';
                     popover.append(li);
                     document.querySelector("#qwik-copy-li").addEventListener("click", function () {
+                        console.log('click');
                         var textArea = document.createElement("textarea");
                         if (type == 'table') {
                             textArea.value = $scope.span.innerHTML;
@@ -18,7 +20,7 @@ export default ['$scope', '$element', function ($scope, $element) {
                         else {
                             textArea.value = $scope.span.textContent;
                         }
-                        $element.append(textArea);
+                        document.querySelector('body').append(textArea);
                         textArea.select();
                         document.execCommand('copy');
                         textArea.remove();
