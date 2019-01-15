@@ -15,10 +15,10 @@ export default ['$scope', '$element', function ($scope, $element) {
                         console.log('click');
                         var textArea = document.createElement("textarea");
                         if (type == 'table') {
-                            textArea.value = $scope.span.innerHTML;
+                            textArea.value = decodeURI($scope.span.innerHTML);
                         }
                         else {
-                            textArea.value = $scope.span.textContent;
+                            textArea.value = decodeURI($scope.span.textContent);
                         }
                         document.querySelector('body').append(textArea);
                         textArea.select();
