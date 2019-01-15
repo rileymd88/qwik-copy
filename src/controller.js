@@ -12,13 +12,12 @@ export default ['$scope', '$element', function ($scope, $element) {
                     li.innerHTML = '<li id="qwik-copy-li" class="lui-list__item lui-list__action" ng-class="{ "lui-disabled": item.disabled, "qv-contextmenu-has-submenu": item.hasSubmenu(), "has-icon": item.hasIcon() }" qva-focus="item.autoFocus" qva-activate="item.disabled || selectItem($event,item)" tcl="context-menu-item" tabindex="-1"> <i class="lui-list__aside  item-icon  lui-icon  lui-icon--copy" ></i> <span class="lui-list__text ng-binding" title="Copy">Copy Cell</span> <i></i> </li>';
                     popover.append(li);
                     document.querySelector("#qwik-copy-li").addEventListener("click", function () {
-                        console.log('click');
                         var textArea = document.createElement("textarea");
                         if (type == 'table') {
-                            textArea.value = decodeURI($scope.span.innerHTML);
+                            textArea.value = $scope.span.innerText
                         }
                         else {
-                            textArea.value = decodeURI($scope.span.textContent);
+                            textArea.value = $scope.span.innerText
                         }
                         document.querySelector('body').append(textArea);
                         textArea.select();
